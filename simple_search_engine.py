@@ -1,3 +1,4 @@
+#打印出一个页面中所有的url
 def get_page(url):
     try:
         import urllib
