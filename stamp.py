@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Define a procedure, stamps, which takes as its input a positive integer in
 # pence and returns the number of 5p, 2p and 1p stamps (p is pence) required
 # to make up that value. The return value should be a tuple of three numbers
@@ -11,17 +12,14 @@
 # (No fair for USians to just say use a "Forever" stamp and be done with it!)
 #
 
-
-def floor(num, d):
-    s = str(num / d * 1.0)
-    return int(s[:s.find('.')])
+# python2 中整数相除，会直接保留商的整数部分
 
 
 def stamps(amount):
     rest = amount
-    a = floor(rest, 5)
+    a = rest / 5
     rest = rest - a * 5
-    b = floor(rest, 2)
+    b = rest / 2
     rest = rest - b * 2
     c = rest
     return a, b, c
