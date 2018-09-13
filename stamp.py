@@ -11,9 +11,11 @@
 # (No fair for USians to just say use a "Forever" stamp and be done with it!)
 #
 
+
 def floor(num, d):
     s = str(num / d * 1.0)
     return int(s[:s.find('.')])
+
 
 def stamps(amount):
     rest = amount
