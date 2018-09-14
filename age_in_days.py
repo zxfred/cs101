@@ -33,9 +33,13 @@ def calculate_days(year, month, day):
     r = r + day
     return r
 
+#def daysBetweenDates(year1, month1, day1, year2, month2, day2):
+#    return calculate_days(year2, month2, day2) - calculate_days(year1, month1, day1)
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
-    return calculate_days(year2, month2, day2) - calculate_days(year1, month1, day1)
+    while year1, month1, day1 != year2, month2, day2:
+        day1 = day1 + 1
+        
 
 # Test routine
 
