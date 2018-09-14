@@ -39,7 +39,17 @@ def calculate_days(year, month, day):
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     while year1, month1, day1 != year2, month2, day2:
         day1 = day1 + 1
-        
+
+
+def next_day(year, month, day):
+    day = day + 1
+    if day > 30:
+        day = 1
+        month = month + 1
+    if month > 12:
+        month = 1
+        year = year + 1
+    return year, month, day
 
 # Test routine
 
