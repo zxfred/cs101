@@ -14,43 +14,28 @@ def isLeapYear(year):
     return year % 4 == 0 and year % 100 != 0 or year % 400 == 0
 
 
-def calculate_days(year, month, day):
-    y = 0
-    m = 0
-    r = 0
-    while y < year:
-        if isLeapYear(y):
-            r = r + 366
-        else:
-            r = r + 365
-        y = y + 1
-    while m < month:
-        if isLeapYear(y) and m == 2:
-            r = r + 29
-        else:
-            r = r + daysOfMonths[m - 1]
-        m = m + 1
-    r = r + day
-    return r
+def dayOfMonth(year, month):
+    result = daysOfMonths[month - 1]
+    if isLeapYear(year) and month == 2:
+        result = result + 1
+    return result
 
-#def daysBetweenDates(year1, month1, day1, year2, month2, day2):
-#    return calculate_days(year2, month2, day2) - calculate_days(year1, month1, day1)
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
-    assert not dayIsBefore(year1, month1, day1, year2, month2, day2)
-    while year1, month1, day1 != year2, month2, day2:
+    assert dayIsBefore(year1, month1, day1, year2, month2, day2)
+    while dayIsBefore(year1, month1, day1, year2, month2, day2):
         day1 = day1 + 1
 
 
 def nextDay(year, month, day):
-    day = day + 1
-    if day > 30:
-        day = 1
-        month = month + 1
-    if month > 12:
-        month = 1
-        year = year + 1
-    return year, month, day
+    if day < dayOfMonth(year, month):
+        return year, month, day + 1
+    else:
+        if month == 12:
+            return year + 1, 1, 1
+        else:
+            return year, month + 1, 1
+
 
 def dayIsBefore(year1, month1, day1, year2, month2, day2):
     if year1 < year2:
@@ -62,8 +47,8 @@ def dayIsBefore(year1, month1, day1, year2, month2, day2):
             return day1 < day2
     return False
 
-# Test routine
 
+# Test routine
 def test():
     test_cases = [((2012, 1, 1, 2012, 2, 28), 58),
                   ((2012, 1, 1, 2012, 3, 1), 60),

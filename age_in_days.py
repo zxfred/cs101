@@ -35,6 +35,7 @@ def calculate_days(year, month, day):
 
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
+    assert dayIsBefore(year1, month1, day1, year2, month2, day2)
     return calculate_days(year2, month2, day2) - calculate_days(year1, month1, day1)
 
 
