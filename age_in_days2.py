@@ -33,10 +33,24 @@ def calculate_days(year, month, day):
     r = r + day
     return r
 
+#def daysBetweenDates(year1, month1, day1, year2, month2, day2):
+#    return calculate_days(year2, month2, day2) - calculate_days(year1, month1, day1)
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
-    return calculate_days(year2, month2, day2) - calculate_days(year1, month1, day1)
+    assert not dayIsBefore(year1, month1, day1, year2, month2, day2)
+    while year1, month1, day1 != year2, month2, day2:
+        day1 = day1 + 1
 
+
+def nextDay(year, month, day):
+    day = day + 1
+    if day > 30:
+        day = 1
+        month = month + 1
+    if month > 12:
+        month = 1
+        year = year + 1
+    return year, month, day
 
 def dayIsBefore(year1, month1, day1, year2, month2, day2):
     if year1 < year2:
@@ -48,8 +62,8 @@ def dayIsBefore(year1, month1, day1, year2, month2, day2):
             return day1 < day2
     return False
 
-
 # Test routine
+
 def test():
     test_cases = [((2012, 1, 1, 2012, 2, 28), 58),
                   ((2012, 1, 1, 2012, 3, 1), 60),
