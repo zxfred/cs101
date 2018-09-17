@@ -1,4 +1,6 @@
-#打印出一个页面中所有的url
+# Finish crawl web
+
+
 def get_page(url):
     try:
         import urllib
@@ -6,24 +8,44 @@ def get_page(url):
     except:
         return ''
 
+
 def get_next_target(page):
     start_link = page.find('<a href=')
     if start_link == -1:
         return None, 0
-    else:
-        start_link = page.find('<a href=')
-        start_quote = page.find('"', start_link)
-        end_quote = page.find('"', start_quote + 1)
-        url = page[start_quote + 1 : end_quote]
-        return url, end_quote
+    start_quote = page.find('"', start_link)
+    end_quote = page.find('"', start_quote + 1)
+    url = page[start_quote + 1:end_quote]
+    return url, end_quote
 
-def print_all_links(page):
+
+def union(p,q):
+    for e in q:
+        if e not in p:
+            p.append(e)
+
+
+def get_all_links(page):
+    links = []
     while True:
-        url, endpos = get_next_target(page)
+        url,endpos = get_next_target(page)
         if url:
-            print url
+            links.append(url)
             page = page[endpos:]
         else:
             break
+    return links
 
-print_all_links(get_page('http://www.baidu.com'))
+
+def crawl_web(seed):
+    tocrawl = [seed]
+    crawled = []
+    while tocrawl:
+        page = tocrawl.pop()
+        if page not in crawled:
+            union(tocrawl, get_all_links(get_page(page)))
+            crawled.append(page)
+    return crawled
+
+
+crawl_web('https://www.baidu.com/')
