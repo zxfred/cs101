@@ -25,16 +25,14 @@ def numbers_in_lists(string):
     for num in string:
         l.append(int(num))
 
-    i = 1
-    target = l[0]
-    r = [target]
+    i = 0
+    target = 0
+    r = []
     new_list = []
 
     while i < len(l):
         if l[i] <= target:
             new_list.append(l[i])
-            if i == len(l) - 1 and new_list:
-                r.append(new_list)
         else:
             if new_list:
                 r.append(new_list)
@@ -42,6 +40,8 @@ def numbers_in_lists(string):
             r.append(l[i])
             target = l[i]
         i = i + 1
+    if new_list:
+        r.append(new_list)
     return r
 
 
