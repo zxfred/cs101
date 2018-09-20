@@ -17,17 +17,11 @@ index = []
 
 
 def add_to_index(index, keyword, url):
-    have_keyword = False
-    i = 0
     for e in index:
         if keyword == e[0]:
-            have_keyword = True
-            break
-        i = i + 1
-    if have_keyword:
-        index[i][1].append(url)
-    else:
-        index.append([keyword, [url]])
+            index[1].append(url)
+            return
+    index.append([keyword, [url]])
 
 
 add_to_index(index,'udacity','http://udacity.com')
