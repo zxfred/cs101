@@ -1,12 +1,12 @@
 # Finish crawl web
 
+
 def record_user_click(index, keyword, url):
-    for entry in index:
-        if entry[0] == keyword:
-            for e in entry[1:]:
-                if url in e:
-                    e[1] = e[1] + 1
-                    return
+    urls = lookup(index, keyword)
+    if urls:
+        for entry in urls:
+            if entry[0] == url:
+                entry[1] = entry[1] + 1
 
 
 def add_to_index(index, keyword, url):
