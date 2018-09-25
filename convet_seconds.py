@@ -13,7 +13,7 @@
 
 
 def convert_seconds(second):
-    rest = round(second - int(second), 1)
+    rest = second - int(second)
     second = int(second)
     h = second / 3600
     second = second % 3600
