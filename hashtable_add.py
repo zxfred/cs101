@@ -12,9 +12,7 @@
 
 
 def hashtable_add(htable, key, value):
-    bucket = hashtable_get_bucket(htable, key)
-    bucket.append([key, value])
-    return htable
+    hashtable_get_bucket(htable, key).append([key, value])
 
 
 def hashtable_get_bucket(htable, keyword):
