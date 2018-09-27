@@ -10,21 +10,19 @@ def record_user_click(index, keyword, url):
 
 
 def add_to_index(index, keyword, url):
-    for entry in index:
-        if entry[0] == keyword:
-            for e in entry[1]:
-                if url == e[0]:  # not found, add new keyword to index
-                    return
-            entry[1].append([url, 0])
-            return
-    index.append([keyword, [[url, 0]]])
+    if keyword in index:
+        index[keyword].append(url)
+    else:
+        index[keyword] = [url]
 
+
+# Change the lookup procedure
+# to now work with dictionaries.
 
 def lookup(index, keyword):
-    for entry in index:
-        if entry[0] == keyword:
-            return entry[1]
-    return []
+    if keyword in index:
+        return index[keyword]
+    return None
 
 
 def add_page_to_index(index, url, content):
