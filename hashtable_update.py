@@ -12,18 +12,24 @@
 
 def hashtable_update(htable, key, value):
     bucket = hashtable_get_bucket(htable, key)
-    for entry in bucket:
-        if entry[0] == key:
-            entry[1] = value
-            return
-    hashtable_add(htable, key, value)
+    entry = find_entry(htable, key)
+    if entry:
+        entry[1] = value
+    bucket.append([key, value])
 
 
-def hashtable_lookup(htable, key):
+def find_entry(htable, key):
     bucket = hashtable_get_bucket(htable, key)
     for entry in bucket:
         if entry[0] == key:
-            return entry[1]
+            return entry
+    return None
+
+
+def hashtable_lookup(htable, key):
+    entry = find_entry(htable, key)
+    if entry:
+        return entry[1]
     return None
 
 
