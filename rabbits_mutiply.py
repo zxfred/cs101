@@ -29,12 +29,13 @@
 
 
 def rabbits(n):
-    if n == 1 or n == 2:
-        return 1
-    if 3 <= n <= 5:
-        return rabbits(n - 1) + rabbits(n - 2)
-    if n > 5:
-        return rabbits(n - 1) + rabbits(n - 2) - rabbits(n - 5)
+    if n < 1:  # no rabbit dead yet
+        return 0
+    else:
+        if n == 1 or n == 2:
+            return 1
+        else:
+            return rabbits(n - 1) + rabbits(n - 2) - rabbits(n - 5)
 
 
 print rabbits(30)
