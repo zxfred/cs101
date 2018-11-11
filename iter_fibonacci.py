@@ -10,5 +10,10 @@ def fibonacci(n):
     return current
 
 
+print fibonacci(0)
+print fibonacci(1)
+print fibonacci(2)
+print fibonacci(3)
+print fibonacci(5)
 print fibonacci(36)
 # >>> 14930352
