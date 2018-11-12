@@ -8,6 +8,7 @@
 
 # Make sure your procedure has a return statement.
 
+
 def find_last(search_str,target_str):
     last_pos = -1
     while True:
@@ -16,23 +17,24 @@ def find_last(search_str,target_str):
             return last_pos
         last_pos = pos
 
+
 print find_last('aaaa', 'a')
-#>>> 3
+# >>> 3
 
 print find_last('aaaaa', 'aa')
-#>>> 3
+# >>> 3
 
 print find_last('aaaa', 'b')
-#>>> -1
+# >>> -1
 
 print find_last("111111111", "1")
-#>>> 8
+# >>> 8
 
 print find_last("222222222", "")
-#>>> 9
+# >>> 9
 
 print find_last("", "3")
-#>>> -1
+# >>> -1
 
 print find_last("", "")
-#>>> 0
+# >>> 0

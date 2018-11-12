@@ -8,6 +8,7 @@
 # countdown(3)
 # instead of print countdown(3).
 
+
 def countdown(num):
     while True:
         if num > 0:
@@ -17,10 +18,12 @@ def countdown(num):
             print 'Blastoff!'
             break
 
+
 countdown(3)
-#>>> 3
-#>>> 2
-#>>> 1
-#>>> Blastoff!
+
+# >>> 3
+# >>> 2
+# >>> 1
+# >>> Blastoff!
 
 
