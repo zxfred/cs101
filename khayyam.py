@@ -12,7 +12,7 @@
 
 #                    1
 #                   1 1
-#                  1 2 1
+#                0 1 2 1
 #                 1 3 3 1
 #                1 4 6 4 1
 #                   ...
@@ -26,31 +26,50 @@
 # triangle.
 
 
+# def triangle(n):
+#     result = []
+#     current = 0
+#     while current < n:
+#         if current == 0:
+#             result.append([1])
+#         if current == 1:
+#             result.append([1, 1])
+#         if current > 1:
+#             last_row = result[current - 1]
+#             current_row = [1]
+#             for index in range(len(last_row) - 1):
+#                 current_row.append(last_row[index] + last_row[index + 1])
+#             current_row.append(1)
+#             result.append(current_row)
+#         current = current + 1
+#     return result
+
+
+def make_next_row(row):
+    result = []
+    prev = 0
+    for e in row:
+        result.append(e + prev)
+        prev = e
+    result.append(prev)
+    return result
+
+
 def triangle(n):
     result = []
-    row = 0
-    while row < n:
-        if row == 0:
-            result.append([1])
-        if row == 1:
-            result.append([1, 1])
-        if row > 1:
-            last_row = result[row - 1]
-            current_row = [1]
-            for index in range(len(last_row) - 1):
-                current_row.append(last_row[index] + last_row[index + 1])
-            current_row.append(1)
-            result.append(current_row)
-        row = row + 1
+    current = [1]
+    for unused in range(n):
+        result.append(current)
+        current = make_next_row(current)
     return result
 
 
 # For example:
 
-# print triangle(0)
+# print(triangle(0))
 # >>> []
 
-# print triangle(1)
+# print(triangle(1))
 # >>> [[1]]
 
 # print(triangle(2))
